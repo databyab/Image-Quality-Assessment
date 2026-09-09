@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE and app settings
+.vscode/
+.idea/
+.streamlit/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local data and generated images
+data/raw/*
+data/processed/*
+data/test_images/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Experiment artifacts
+experiments/*/checkpoints/*
+experiments/*/tmp/
+experiments/*/logs/
+*.pth
+*.pt
+!experiments/baseline/checkpoints/best_model.pt
+
+# Test, type-checker, and build caches
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local configuration and logs
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
