@@ -47,8 +47,8 @@ st.set_page_config(
 )
 
 
-st.title("📷 PhotoIQ")
-st.subheader("Photo quality analysis")
+st.title("Photo quality analysis")
+
 
 st.write(
     "Upload a photograph and PhotoIQ will analyze it "
