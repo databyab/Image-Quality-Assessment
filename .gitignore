@@ -51,3 +51,15 @@ dist/
 !.env.example
 *.log
 *.tmp
+
+study.md
+# Application exports and runtime manifests
+photoiq_manifest*.csv
+*.zip
+
+# Non-repository documents and stray assets
+*VOX*
+*vox*
+*ChatGPT*
+*chatgpt*
+

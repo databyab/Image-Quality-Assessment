@@ -61,14 +61,36 @@ The training module uses a batch size of 32, a learning rate of `0.001`, 20 epoc
 
 ## Demo application
 
-The Streamlit application loads `experiments/baseline/checkpoints/best_model.pt` and accepts JPEG and PNG uploads:
+The Streamlit application loads the bundled baseline checkpoint and accepts JPEG and PNG uploads in single-photo, multiple-photo, or folder mode:
 
 ```powershell
 streamlit run app/demo.py
 ```
 
-Uploads are limited to 10 MB and 25,000,000 pixels before inference. Temporary inference files are removed after prediction.
+Single-photo uploads are limited to 20 MB. Multiple-photo and folder modes allow up to 10 MB per photo and 100 MB total. All images are limited to 25,000,000 pixels. Set a confidence threshold for each defect, classify the selection, browse photos by label, and download the labeled folder structure as a ZIP plus a CSV report.
 
 ## Baseline results
 
 The recorded baseline metrics are documented in [experiments/baseline/README.md](experiments/baseline/README.md).
+
+## Batch defect sorting
+
+Sort a folder of photos into defect-labeled subfolders while keeping the originals
+unchanged:
+
+```powershell
+python -m app.sort_folder "C:\Photos\To Sort" "C:\Photos\Sorted"
+```
+
+The command scans the input folder recursively for JPEG and PNG files. A photo with
+multiple detected defects is copied into each matching folder. Photos with no
+detected defects go into `No detected defects`. Scores within 0.10 of the model's
+0.5 decision threshold are also copied into `Needs review`; adjust this with
+`--uncertainty-band 0.15`, for example. The output includes
+`photoiq_manifest.csv` with each source path, destination folders, status, and
+model scores. Existing files are never overwritten; copies receive numbered names
+if needed.
+
+The output folder must be outside the input folder. Supported image types are
+JPEG and PNG. Inference uses the bundled baseline checkpoint by default, which was
+evaluated on synthetic data; review results before relying on the labels.
